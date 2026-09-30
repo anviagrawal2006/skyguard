@@ -1,6 +1,6 @@
 import os
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -57,13 +57,16 @@ app.add_middleware(
 )
 
 # Register API routes
-app.include_router(stations_router)
-app.include_router(readings_router)
-app.include_router(health_router)
-app.include_router(anomalies_router)
-app.include_router(dashboard_router)
-app.include_router(corrections_router)
-app.include_router(predict_router)
+api_router = APIRouter(prefix="/api")
+api_router.include_router(stations_router)
+api_router.include_router(readings_router)
+api_router.include_router(health_router)
+api_router.include_router(anomalies_router)
+api_router.include_router(dashboard_router)
+api_router.include_router(corrections_router)
+api_router.include_router(predict_router)
+
+app.include_router(api_router)
 
 # Also adding extra routes required by TRD in their respective files...
 

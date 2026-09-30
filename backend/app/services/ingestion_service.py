@@ -90,7 +90,7 @@ def poll_stations():
             from skyguard.main_pipeline import SkyGuardPipeline
             
             pipeline = SkyGuardPipeline()
-            model_dir = os.path.join(os.path.dirname(__file__), "../../../skyguard/models")
+            model_dir = os.path.join(os.path.dirname(__file__), "../../skyguard/models")
             fc_path = os.path.join(model_dir, "classifier.pkl")
             temp_path = os.path.join(model_dir, "temporal")
             temp_sklearn_path = os.path.join(model_dir, "temporal_sklearn.pkl")
